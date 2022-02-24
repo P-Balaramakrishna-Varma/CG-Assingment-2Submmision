@@ -12,6 +12,7 @@ import * as Classes from './Classes.js'
 import * as Models from './LoadModels.js'
 import * as Key_board from './Keyboard.js'
 import * as Cam from './Camera.js'
+import * as ColRan from './miscellaneous/RandomLocation_Collsion.js'
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -30,8 +31,8 @@ const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
 camera.position.set( 30, 30, 100 ); //I moving camera
-//const controls = new OrbitControls( camera, renderer.domElement );
-//controls.update();
+const controls = new OrbitControls( camera, renderer.domElement );
+controls.update();
 
 
 
@@ -65,13 +66,20 @@ scene.environment = pmremGenerator.fromScene( sky ).texture;
 
 
 Models.Init()
-await(sleep(1000))
+await(sleep(2000))
 
 Load.Create_Object("Player", "Player")
 scene.add(Load.player_ship.Object)
+await(sleep(1000))
 
 
-Cam.UpdateCamera(camera, Load.player_ship.Object.position, Load.player_ship.Object.rotation.y)
+var A = ColRan.Random()
+var Mod = new Classes.ModelMatrix(A.x, 0, A.z, 0, 1)
+Load.Create_Object(Mod, "tressure")
+scene.add(Load.Tressure_Boxes[0].Object)
+console.log(Load.Tressure_Boxes[0])
+
+//Cam.UpdateCamera(camera, Load.player_ship.Object.position, Load.player_ship.Object.rotation.y)
 
 
 function animate() {
@@ -80,13 +88,13 @@ function animate() {
 	var Key = Key_board.Get_Last_KeyPress()
 	Load.player_ship.move(Key)
 
-	Cam.UpdateConfig(Key)
-	Cam.UpdateCamera(camera, Load.player_ship.Object.position, Load.player_ship.Object.rotation.y)
+	//Cam.UpdateConfig(Key)
+	//Cam.UpdateCamera(camera, Load.player_ship.Object.position, Load.player_ship.Object.rotation.y)
 
 	//console.log(camera.position)
 
 	water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
-	//controls.update()
+	controls.update()
 	make_responsive(renderer, camera);
 	renderer.render( scene, camera );
 }

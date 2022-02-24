@@ -42,18 +42,32 @@ class Tressure_Box
 {
     constructor(object)
     {
-
+        object.scale.set(0.2, 0.2, 0.2)
+        this.Object = object
     }
 }
 
 class ModelMatrix
 {
-    constructor(params)
+    constructor(p_x, p_y, p_z, r_y, scale)
     {
+        this.p_x = p_x
+        this.p_y = p_y
+        this.p_z = p_z
 
+        this.r_y = r_y
+
+        this.scale = scale
     }
     Populate(Sence_Object)
     {
+        Sence_Object.position.x = this.p_x
+        Sence_Object.position.y = this.p_y
+        Sence_Object.position.z = this.p_z
+
+        Sence_Object.rotation.y = this.r_y
+        
+        Sence_Object.scale.set(this.scale, this.scale, this.scale)
     }
 }
 
