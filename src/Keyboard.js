@@ -22,6 +22,12 @@ function onDocumentKeyDown(event)
         Key = "a"
     else if (keyCode == 68)
         Key = "d"
+    else if (keyCode == 66)
+        Key = "b"
+    else if (keyCode == 84)
+        Key = "t"
+    else if (keyCode == 79)
+        Key = "o"
 
     Last_Key_Pressed = Key
     console.log(Key)
