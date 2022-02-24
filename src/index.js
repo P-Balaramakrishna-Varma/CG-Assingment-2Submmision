@@ -1,12 +1,20 @@
 //Imporing
 import * as THREE from 'three';
-
 import { OrbitControls } from '../node_modules/three/examples/jsm/controls/OrbitControls.js';
 import { Water } from '../node_modules/three/examples/jsm/objects/Water.js';
 import { Sky } from '../node_modules/three/examples/jsm/objects/Sky.js';
 
+
 import {make_responsive}from './miscellaneous/MakeResponsive.js'
 import * as Init from './Initialzing.js'
+import * as Load from './CreateModels.js'
+import * as Classes from './Classes.js'
+import * as Models from './LoadModels.js'
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 
 
 
@@ -20,6 +28,8 @@ const camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.inner
 camera.position.set( 30, 30, 100 ); //I moving camera
 const controls = new OrbitControls( camera, renderer.domElement );
 controls.update();
+
+
 
 
 
@@ -40,6 +50,23 @@ scene.add(water);
 
 const sky = Init.CreateSky(sun, 0, 0, 0);
 scene.add(sky);
+
+
+
+//Some setup for scene
+const pmremGenerator = new THREE.PMREMGenerator( renderer );
+scene.environment = pmremGenerator.fromScene( sky ).texture;
+
+
+
+
+Models.Init()
+await(sleep(1000))
+
+Load.Create_Object("Player", "Player")
+scene.add(Load.player_ship.Object)
+
+
 
 
 function animate() {
