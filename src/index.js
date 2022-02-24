@@ -10,6 +10,7 @@ import * as Init from './Initialzing.js'
 import * as Load from './CreateModels.js'
 import * as Classes from './Classes.js'
 import * as Models from './LoadModels.js'
+import * as Key_board from './Keyboard.js'
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -19,6 +20,8 @@ function sleep(ms) {
 
 
 //Basic setup
+Key_board.Keyboard_init()
+
 const canvas = document.querySelector('#c');
 const renderer = new THREE.WebGLRenderer({canvas});
 
@@ -71,8 +74,11 @@ scene.add(Load.player_ship.Object)
 
 function animate() {
 	requestAnimationFrame( animate );
-	water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
 
+	var Key = Key_board.Get_Last_KeyPress()
+	Load.player_ship.move(Key)
+
+	water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
 	controls.update()
 	make_responsive(renderer, camera);
 	renderer.render( scene, camera );
