@@ -1,8 +1,10 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import * as THREE from 'three';
 
 var Player_model
 var Enemy_model
 var Treasure_model
+var Cannon_model
 var Initialized = false
 
 
@@ -72,6 +74,12 @@ function Init_Enemy()
     console.log(Enemy_model == undefined)
 }
 
+function Init_Cannon()
+{
+    const geometry = new THREE.SphereGeometry();
+    const material = new THREE.MeshPhongMaterial({color: 0x44aa88});
+    Cannon_model = new THREE.Mesh( geometry, material );
+}
 
 //If not intialized intialieze
 function Init()
@@ -81,13 +89,14 @@ function Init()
         Init_player()
         Init_Tressure()
         Init_Enemy()
+        Init_Cannon()
         Initialized = true
     }
 }
 
 
 
-export {Init, Player_model, Enemy_model, Treasure_model}
+export {Init, Player_model, Enemy_model, Treasure_model, Cannon_model}
 
 //In main only call initial-lize function and a sleep
 //This module provides the loaded models of Player Enemy and tressure

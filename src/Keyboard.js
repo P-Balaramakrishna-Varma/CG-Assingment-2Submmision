@@ -28,6 +28,8 @@ function onDocumentKeyDown(event)
         Key = "t"
     else if (keyCode == 79)
         Key = "o"
+    else if (keyCode == 32)
+        Key = "space"
 
     Last_Key_Pressed = Key
     console.log(Key)

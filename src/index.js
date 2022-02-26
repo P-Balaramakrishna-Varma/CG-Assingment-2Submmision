@@ -15,6 +15,7 @@ import * as Cam from './Camera.js'
 import * as ColRan from './miscellaneous/RandomLocation_Collsion.js'
 import { Collision_Player_tressure } from './Collision.js';
 import { UpdatePostion_Boat } from './Enemy_boat_mv.js'
+import * as Can from './Cannons.js'
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -73,7 +74,8 @@ await(sleep(3000))
 Load.Create_Object("Player", "Player")
 scene.add(Load.player_ship.Object)
 
-var A = ColRan.Random()
+
+/* var A = ColRan.Random()
 var Mod = new Classes.ModelMatrix(A.x, 0, A.z, 0, 1)
 Load.Create_Object(Mod, "tressure")
 scene.add(Load.Tressure_Boxes[0].Object)
@@ -83,17 +85,17 @@ var Mod = new Classes.ModelMatrix(300, 0, 400, 0, 1)
 Load.Create_Object(Mod, "Enemy")
 scene.add(Load.Enemy_Ships[0].Object)
 
-
+ */
 //Cam.UpdateCamera(camera, Load.player_ship.Object.position, Load.player_ship.Object.rotation.y)
-
+Can.MakeCannon_Player(Load.player_ship, scene)
 
 function animate() {
 	requestAnimationFrame( animate );
 
 	var Key = Key_board.Get_Last_KeyPress()
-	Load.player_ship.move(Key)
-	UpdatePostion_Boat(Load.player_ship)
-
+	Load.player_ship.move(Key, scene)
+	//UpdatePostion_Boat(Load.player_ship) //enimes
+	Can.move_cannons()
 /* 	if(Math.random() < 0.001 * 2) //2o's
 	{
 		A = ColRan.Random()

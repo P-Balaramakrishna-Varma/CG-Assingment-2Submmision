@@ -5,9 +5,9 @@ import * as THREE from '../../node_modules/three/build/three.module.js';
 function Random()
 {
     //Getting radius
-    var radius = Math.random() * 800
-    while(radius < 80)
-        radius = Math.random() * 800
+    var radius = Math.random() * 1000
+    while(radius < 100)
+        radius = Math.random() * 1000
 
     //rand*500 > 50
     var ang = Math.random() * 2 * Math.PI 

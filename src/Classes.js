@@ -1,4 +1,4 @@
-
+import {MakeCannon_Player} from './Cannons.js'
 class Enemy_Ship
 {
     constructor(Object) 
@@ -32,7 +32,7 @@ class Player_Ship
        Object.scale.set(0.1, 0.1, 0.1)
        this.Object = Object
     }
-    move(Key)
+    move(Key, scene)
     {
         const Radius = 4
         //science 2 last page of classowrk
@@ -50,8 +50,10 @@ class Player_Ship
             this.Object.rotation.y += 0.1
         if(Key == "d")
             this.Object.rotation.y -= 0.1
-        
+        if(Key == "space")    
+            MakeCannon_Player(this, scene)
     }
+
 }
 
 class Tressure_Box
