@@ -35,7 +35,7 @@ function Init_player()
     console.log(Player_model == undefined)
 }
 
-function Initi_Tressure()
+function Init_Tressure()
 {
     var loader = new GLTFLoader();
 
@@ -54,13 +54,33 @@ function Initi_Tressure()
 }
 
 
+function Init_Enemy()
+{
+    var loader = new GLTFLoader();
+
+    loader.load(
+        'http://localhost:8080/src/Resources/EnemyShip/scene.gltf',
+        function ( gltf ) 
+        {
+            Enemy_model = gltf.scene
+        },
+        Progess,
+        Error_P
+    );   
+
+    loader = null
+    console.log(Enemy_model == undefined)
+}
+
+
 //If not intialized intialieze
 function Init()
 {
     if(Initialized == false)
     {
         Init_player()
-        Initi_Tressure()
+        Init_Tressure()
+        Init_Enemy()
         Initialized = true
     }
 }

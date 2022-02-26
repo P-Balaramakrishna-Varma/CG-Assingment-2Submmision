@@ -24,6 +24,15 @@ function MakeTressure(ModelMat)
     Tressure_Boxes.push(tressure_box)
 }
 
+function MakeEnemy(ModelMat)
+{
+    var CloneObject = Models.Enemy_model.clone()
+    ModelMat.Populate(CloneObject)
+
+    var Enemy_new = new Classes.Enemy_Ship(CloneObject)
+    Enemy_Ships.push(Enemy_new)
+}
+
 
 function Create_Object(ModelMat, What)
 {
@@ -31,6 +40,8 @@ function Create_Object(ModelMat, What)
         LoadPalyer()
     else if (What == "tressure")
         MakeTressure(ModelMat)
+    else if (What == "Enemy")
+        MakeEnemy(ModelMat)
     else
         console.log("Error Object entered to be created\n");
 }

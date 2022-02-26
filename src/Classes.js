@@ -3,7 +3,8 @@ class Enemy_Ship
 {
     constructor(Object) 
     {
-        
+       Object.scale.set(8, 8, 8)
+       this.Object = Object 
     }
 }
 

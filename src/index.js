@@ -67,17 +67,21 @@ scene.environment = pmremGenerator.fromScene( sky ).texture;
 
 
 Models.Init()
-await(sleep(2000))
+await(sleep(3000))
 
 Load.Create_Object("Player", "Player")
 scene.add(Load.player_ship.Object)
-await(sleep(1000))
-
 
 var A = ColRan.Random()
 var Mod = new Classes.ModelMatrix(A.x, 0, A.z, 0, 1)
 Load.Create_Object(Mod, "tressure")
 scene.add(Load.Tressure_Boxes[0].Object)
+
+var A = ColRan.Random()
+var Mod = new Classes.ModelMatrix(200, 0, 200, 0, 1)
+Load.Create_Object(Mod, "Enemy")
+scene.add(Load.Enemy_Ships[0].Object)
+
 
 //Cam.UpdateCamera(camera, Load.player_ship.Object.position, Load.player_ship.Object.rotation.y)
 
@@ -88,7 +92,7 @@ function animate() {
 	var Key = Key_board.Get_Last_KeyPress()
 	Load.player_ship.move(Key)
 
-	if(Math.random() < 0.001 * 2) //2o's
+/* 	if(Math.random() < 0.001 * 2) //2o's
 	{
 		A = ColRan.Random()
 		Mod = new Classes.ModelMatrix(A.x, 0, A.z, 0, 1)
@@ -97,7 +101,7 @@ function animate() {
 	}
 
 	Collision_Player_tressure(scene)
-	//ColRan.Collides(Load.player_ship.Object, Load.Tressure_Boxes[0].Object)
+	 */
 	//Cam.UpdateConfig(Key)
 	//Cam.UpdateCamera(camera, Load.player_ship.Object.position, Load.player_ship.Object.rotation.y)
 
