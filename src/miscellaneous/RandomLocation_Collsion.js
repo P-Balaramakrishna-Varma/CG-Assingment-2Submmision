@@ -5,9 +5,9 @@ import * as THREE from '../../node_modules/three/build/three.module.js';
 function Random()
 {
     //Getting radius
-    var radius = Math.random() * 500
-    while(radius < 50)
-        radius = Math.random() * 500
+    var radius = Math.random() * 800
+    while(radius < 80)
+        radius = Math.random() * 800
 
     //rand*500 > 50
     var ang = Math.random() * 2 * Math.PI 
@@ -23,18 +23,14 @@ function Random()
 
 function Collides(Object1, Object2)
 {
-    const box1 = new THREE.Box3();
-    const box2 = new THREE.Box3();
+    const box1 = new THREE.Box3().setFromObject(Object1);
+    const box2 = new THREE.Box3().setFromObject(Object2);
 
-    Object1.geometry.computeBoundingBox();
-    Object2.geometry.computeBoundingBox();
-
-    // in the animation loop, compute the current bounding box with the world matrix
-    box1.copy( Object1.geometry.boundingBox ).applyMatrix4( Object1.matrixWorld );
-    box1.copy( Object2.geometry.boundingBox ).applyMatrix4( Object2.matrixWorld );
-
-    if(box1.intersect(box2) == true)
+    if(box1.intersectsBox(box2) == true)
+    {
+       console.log("Intersection workding")
        return true; 
+    }
     else
         return false;
 }

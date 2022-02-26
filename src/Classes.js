@@ -44,6 +44,7 @@ class Tressure_Box
     {
         object.scale.set(0.2, 0.2, 0.2)
         this.Object = object
+        this.Alive = true
     }
 }
 
