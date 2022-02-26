@@ -19,7 +19,7 @@ function CreateSun(parameters)
 
 function CreateWater(sun, position_x, position_y, position_z, scene)
 {
-    const waterGeometry = new THREE.PlaneGeometry( 10000, 10000 );
+    const waterGeometry = new THREE.PlaneGeometry( 100000, 100000 );
 
     var water = new Water(
         waterGeometry,

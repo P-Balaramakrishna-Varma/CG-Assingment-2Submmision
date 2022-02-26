@@ -12,7 +12,7 @@ class Enemy_Ship
         this.Object.rotation.y -= Math.PI/2
         //console.log(this.Object.rotation)
 
-        var t = 2
+        var t = 1
         var PlayerPos = Player_Ship.Object.position
         var EnemyPos = this.Object.position
         var d = Math.sqrt((PlayerPos.x - EnemyPos.x) ** 2 + (PlayerPos.z - EnemyPos.z) ** 2)

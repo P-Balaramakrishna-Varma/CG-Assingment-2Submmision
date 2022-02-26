@@ -104,6 +104,19 @@ function animate() {
 
 	Collision_Player_tressure(scene)
 	 */
+	
+ 	/*if(Math.random() < 0.001 * 2) //2o's
+	{
+		A = ColRan.Random()
+		Mod = new Classes.ModelMatrix(A.x, 0, A.z, 0, 1)
+		Load.Create_Object(Mod, "Enemy")
+		scene.add(Load.Enemy_Ships[Load.Enemy_Ships.length - 1].Object)
+	}*/
+
+
+	
+
+
 	//Cam.UpdateConfig(Key)
 	//Cam.UpdateCamera(camera, Load.player_ship.Object.position, Load.player_ship.Object.rotation.y)
 
