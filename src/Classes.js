@@ -5,6 +5,8 @@ class Enemy_Ship
     {
        Object.scale.set(8, 8, 8)
        this.Object = Object 
+       this.Health = 2
+       this.Alive = true
     }
     move(Player_Ship)
     {
