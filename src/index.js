@@ -80,50 +80,67 @@ var Mod = new Classes.ModelMatrix(A.x, 0, A.z, 0, 1)
 Load.Create_Object(Mod, "tressure")
 scene.add(Load.Tressure_Boxes[0].Object)*/
 
-var A = ColRan.Random()
+/*var A = ColRan.Random()
 var Mod = new Classes.ModelMatrix(200, 0, -200, 0, 1)
 Load.Create_Object(Mod, "Enemy")
-scene.add(Load.Enemy_Ships[0].Object)
+scene.add(Load.Enemy_Ships[0].Object)*/
 
 //Cam.UpdateCamera(camera, Load.player_ship.Object.position, Load.player_ship.Object.rotation.y)
 
-function animate() {
+var A, Key, Mod
+function animate()
+{
+	//Check if game is over 
+
+
 	requestAnimationFrame( animate );
 
-	var Key = Key_board.Get_Last_KeyPress()
+
+	//Move the boat Player
+	Key = Key_board.Get_Last_KeyPress()
 	Load.player_ship.move(Key, scene)
-	UpdatePostion_Boat(Load.player_ship) //enimes
-	Can.EnemyAttack(scene)
-	Can.move_cannons()
-	Can.EnemyDistruction(scene)
-/* 	if(Math.random() < 0.001 * 2) //2o's
+
+
+	//tressure
+	//Spawn treasure
+	if(Math.random() < 0.001 * 2) //2o's
 	{
 		A = ColRan.Random()
 		Mod = new Classes.ModelMatrix(A.x, 0, A.z, 0, 1)
 		Load.Create_Object(Mod, "tressure")
 		scene.add(Load.Tressure_Boxes[Load.Tressure_Boxes.length - 1].Object)
 	}
-
+	//Collect tressure
 	Collision_Player_tressure(scene)
-	 */
 	
- 	/*if(Math.random() < 0.001 * 2) //2o's
+
+
+	//Enimies
+	//spawn enemy ships
+ 	if(Math.random() < 0.001 * 2) //2o's
 	{
 		A = ColRan.Random()
 		Mod = new Classes.ModelMatrix(A.x, 0, A.z, 0, 1)
 		Load.Create_Object(Mod, "Enemy")
 		scene.add(Load.Enemy_Ships[Load.Enemy_Ships.length - 1].Object)
-	}*/
+	}
+	//move enemy ships
+	UpdatePostion_Boat(Load.player_ship) //enimes
+	//enemy ships attacking creatting cannons
+	Can.EnemyAttack(scene)
 
+
+
+	//Cannons damage and move
+	Can.move_cannons()
+	Can.EnemyDistruction(scene)
+	Can.Player_Distruction(scene)
 
 	
 
-
+	//Camera update
 	//Cam.UpdateConfig(Key)
 	//Cam.UpdateCamera(camera, Load.player_ship.Object.position, Load.player_ship.Object.rotation.y)
-
-
-	//console.log(camera.position)
 
 	water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
 	controls.update()

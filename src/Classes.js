@@ -37,6 +37,8 @@ class Player_Ship
        Object.rotation.y = Math.PI
        Object.scale.set(0.1, 0.1, 0.1)
        this.Object = Object
+       this.Health = 20
+       this.Alive = true
     }
     move(Key, scene)
     {

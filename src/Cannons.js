@@ -64,7 +64,30 @@ function EnemyDistruction(scene)
         }
 }
 
+function Player_Distruction(scene)
+{
+  if(Loaded.player_ship.Alive == false)
+    return
+  
+  for(var i = 0; i < Cannons_E.length; i++)
+  {
+    if(Cannons_E[i].Alive == true)
+    {
+      if(Collides(Loaded.player_ship.Object, Cannons_E[i].Object))
+      {
+        scene.remove(Cannons_E[i].Object)
+        Cannons_E[i].Alive = false
 
+        Loaded.player_ship.Health -= 1 
+        console.log(Loaded.player_ship.Health)
+        console.log("\n")
+
+        if(Loaded.player_ship.Health <= 0)
+          Loaded.player_ship.Alive = false
+      }
+    }
+  }
+}
 
 function MakeCannon_Enemy(Enemy_ship, scene)
 {
@@ -108,4 +131,4 @@ function EnemyAttack(scene)
   }
 }
 
-export {MakeCannon_Player, move_cannons, EnemyDistruction, EnemyAttack}
+export {MakeCannon_Player, move_cannons, EnemyDistruction, EnemyAttack, Player_Distruction}
