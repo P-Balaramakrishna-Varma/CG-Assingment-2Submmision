@@ -81,7 +81,7 @@ Load.Create_Object(Mod, "tressure")
 scene.add(Load.Tressure_Boxes[0].Object)*/
 
 var A = ColRan.Random()
-var Mod = new Classes.ModelMatrix(200, 0, 200, 0, 1)
+var Mod = new Classes.ModelMatrix(200, 0, -200, 0, 1)
 Load.Create_Object(Mod, "Enemy")
 scene.add(Load.Enemy_Ships[0].Object)
 
@@ -92,7 +92,8 @@ function animate() {
 
 	var Key = Key_board.Get_Last_KeyPress()
 	Load.player_ship.move(Key, scene)
-	//UpdatePostion_Boat(Load.player_ship) //enimes
+	UpdatePostion_Boat(Load.player_ship) //enimes
+	Can.EnemyAttack(scene)
 	Can.move_cannons()
 	Can.EnemyDistruction(scene)
 /* 	if(Math.random() < 0.001 * 2) //2o's

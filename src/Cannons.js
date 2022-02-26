@@ -4,6 +4,7 @@ import * as Loaded from './CreateModels'
 import {Collides} from './miscellaneous/RandomLocation_Collsion.js'
 
 var Cannons_P = []
+var Cannons_E = []
 
 
 function MakeCannon_Player(Player_Ship, scene)
@@ -18,8 +19,8 @@ function MakeCannon_Player(Player_Ship, scene)
   ModelMat.Populate(CloneObject)
   CloneObject.scale.set(2, 2, 2)
 
-  Con_vel.vx = - 2 * Math.sin(Player_Ship.Object.rotation.y - Math.PI)
-  Con_vel.vz = - 2 * Math.cos(Player_Ship.Object.rotation.y - Math.PI)
+  Con_vel.vx = - 3 * Math.sin(Player_Ship.Object.rotation.y - Math.PI)
+  Con_vel.vz = - 3 * Math.cos(Player_Ship.Object.rotation.y - Math.PI)
   Con_vel.Object = CloneObject
   Con_vel.Alive = true
   Cannons_P.push(Con_vel)
@@ -32,6 +33,12 @@ function move_cannons()
   {
     Cannons_P[i].Object.position.x += Cannons_P[i].vx
     Cannons_P[i].Object.position.z += Cannons_P[i].vz
+  }
+
+  for(var i = 0; i < Cannons_E.length; i++)
+  {
+    Cannons_E[i].Object.position.x += Cannons_E[i].vx
+    Cannons_E[i].Object.position.z += Cannons_E[i].vz
   }
 }
 
@@ -57,4 +64,48 @@ function EnemyDistruction(scene)
         }
 }
 
-export {MakeCannon_Player, move_cannons, EnemyDistruction}
+
+
+function MakeCannon_Enemy(Enemy_ship, scene)
+{
+  var Con_vel = {}
+
+
+  var PShipPos = Enemy_ship.Object.position
+  var ModelMat = new classes.ModelMatrix(PShipPos.x, 10, PShipPos.z, 1)
+
+  var CloneObject = Models.Cannon_model.clone()
+  ModelMat.Populate(CloneObject)
+  CloneObject.scale.set(2, 2, 2)
+
+  if(Loaded.player_ship.Object.position.z < Enemy_ship.Object.position.z)
+  {
+    Con_vel.vx = - 2 * Math.sin(Enemy_ship.Object.rotation.y + Math.PI)
+    Con_vel.vz = - 2 * Math.cos(Enemy_ship.Object.rotation.y + Math.PI)
+  }
+  else
+  {
+    Con_vel.vx = - 2 * Math.sin(Enemy_ship.Object.rotation.y + Math.PI/2)
+    Con_vel.vz = - 2 * Math.cos(Enemy_ship.Object.rotation.y + Math.PI/2)
+  }
+ 
+
+
+  Con_vel.Object = CloneObject
+  Con_vel.Alive = true
+  Cannons_E.push(Con_vel)
+  scene.add(Con_vel.Object)
+}
+
+function EnemyAttack(scene)
+{
+  for(var i = 0; i < Loaded.Enemy_Ships.length; i++)
+  {
+    if(Loaded.Enemy_Ships[i].Alive == true && Math.random() < 0.02)
+    {
+      MakeCannon_Enemy(Loaded.Enemy_Ships[i], scene)
+    }
+  }
+}
+
+export {MakeCannon_Player, move_cannons, EnemyDistruction, EnemyAttack}

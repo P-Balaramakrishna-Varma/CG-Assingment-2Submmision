@@ -11,7 +11,11 @@ class Enemy_Ship
     move(Player_Ship)
     {
         this.Object.lookAt(Player_Ship.Object.position)
-        this.Object.rotation.y -= Math.PI/2
+        if(Player_Ship.Object.position.z < this.Object.position.z)
+            this.Object.rotation.y -= Math.PI/2
+        else
+            this.Object.rotation.y += Math.PI/2
+
         //console.log(this.Object.rotation)
 
         var t = 1
