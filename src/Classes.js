@@ -6,6 +6,21 @@ class Enemy_Ship
        Object.scale.set(8, 8, 8)
        this.Object = Object 
     }
+    move(Player_Ship)
+    {
+        this.Object.lookAt(Player_Ship.Object.position)
+        this.Object.rotation.y -= Math.PI/2
+        //console.log(this.Object.rotation)
+
+        var t = 2
+        var PlayerPos = Player_Ship.Object.position
+        var EnemyPos = this.Object.position
+        var d = Math.sqrt((PlayerPos.x - EnemyPos.x) ** 2 + (PlayerPos.z - EnemyPos.z) ** 2)
+
+        this.Object.position.x = (t * PlayerPos.x + (d-t) * EnemyPos.x) / d
+        this.Object.position.z = (t * PlayerPos.z + (d-t) * EnemyPos.z) / d
+        //console.log(this.Object.position.x)
+    }
 }
 
 class Player_Ship

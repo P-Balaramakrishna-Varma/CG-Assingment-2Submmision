@@ -14,6 +14,7 @@ import * as Key_board from './Keyboard.js'
 import * as Cam from './Camera.js'
 import * as ColRan from './miscellaneous/RandomLocation_Collsion.js'
 import { Collision_Player_tressure } from './Collision.js';
+import { UpdatePostion_Boat } from './Enemy_boat_mv.js'
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -78,7 +79,7 @@ Load.Create_Object(Mod, "tressure")
 scene.add(Load.Tressure_Boxes[0].Object)
 
 var A = ColRan.Random()
-var Mod = new Classes.ModelMatrix(200, 0, 200, 0, 1)
+var Mod = new Classes.ModelMatrix(300, 0, 400, 0, 1)
 Load.Create_Object(Mod, "Enemy")
 scene.add(Load.Enemy_Ships[0].Object)
 
@@ -91,6 +92,7 @@ function animate() {
 
 	var Key = Key_board.Get_Last_KeyPress()
 	Load.player_ship.move(Key)
+	UpdatePostion_Boat(Load.player_ship)
 
 /* 	if(Math.random() < 0.001 * 2) //2o's
 	{
