@@ -2,6 +2,7 @@ import * as Models from './LoadModels.js'
 import * as classes from './Classes'
 import * as Loaded from './CreateModels'
 import {Collides} from './miscellaneous/RandomLocation_Collsion.js'
+import * as DashBoard from './Dashboard.js'
 
 var Cannons_P = []
 var Cannons_E = []
@@ -60,6 +61,7 @@ function EnemyDistruction(scene)
               Loaded.Enemy_Ships.Alive = false
               scene.remove(Loaded.Enemy_Ships[j].Object) 
             }
+            DashBoard.IncreaseHits()
           }
         }
 }
@@ -84,6 +86,8 @@ function Player_Distruction(scene)
 
         if(Loaded.player_ship.Health <= 0)
           Loaded.player_ship.Alive = false
+        
+        DashBoard.DecreaseHealth()
       }
     }
   }
@@ -103,8 +107,8 @@ function MakeCannon_Enemy(Enemy_ship, scene)
 
   if(Loaded.player_ship.Object.position.z < Enemy_ship.Object.position.z)
   {
-    Con_vel.vx = - 2 * Math.sin(Enemy_ship.Object.rotation.y + Math.PI)
-    Con_vel.vz = - 2 * Math.cos(Enemy_ship.Object.rotation.y + Math.PI)
+    Con_vel.vx = - 2 * Math.sin(Enemy_ship.Object.rotation.y + Math.PI/2)
+    Con_vel.vz = - 2 * Math.cos(Enemy_ship.Object.rotation.y + Math.PI/2)
   }
   else
   {

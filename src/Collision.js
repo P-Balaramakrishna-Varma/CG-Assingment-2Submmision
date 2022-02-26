@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import * as Create from './CreateModels.js'
 import * as ColRand from './miscellaneous/RandomLocation_Collsion.js'
+import * as DashBoard from './Dashboard.js'
 
 function Collision_Player_tressure(scene)
 {
@@ -9,9 +10,9 @@ function Collision_Player_tressure(scene)
         if(Create.Tressure_Boxes[i].Alive == true)
             if(ColRand.Collides(Create.player_ship.Object, Create.Tressure_Boxes[i].Object) == true)
             {
-                console.log("Workding\n")
                 scene.remove(Create.Tressure_Boxes[i].Object)
                 Create.Tressure_Boxes[i].Alive = false
+                DashBoard.IncreaseTressure()
             }
     }
 }

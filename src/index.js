@@ -16,6 +16,7 @@ import * as ColRan from './miscellaneous/RandomLocation_Collsion.js'
 import { Collision_Player_tressure } from './Collision.js';
 import { UpdatePostion_Boat } from './Enemy_boat_mv.js'
 import * as Can from './Cannons.js'
+import * as DashBoard from './Dashboard.js'
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -37,7 +38,7 @@ camera.position.set( 30, 30, 100 ); //I moving camera
 const controls = new OrbitControls( camera, renderer.domElement );
 controls.update();
 
-
+DashBoard.Init()
 
 
 
@@ -136,7 +137,7 @@ function animate()
 	Can.EnemyDistruction(scene)
 	Can.Player_Distruction(scene)
 
-	
+	DashBoard.UpdateDashboard()	
 
 	//Camera update
 	//Cam.UpdateConfig(Key)

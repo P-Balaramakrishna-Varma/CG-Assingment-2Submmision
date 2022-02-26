@@ -27,10 +27,7 @@ function Collides(Object1, Object2)
     const box2 = new THREE.Box3().setFromObject(Object2);
 
     if(box1.intersectsBox(box2) == true)
-    {
-       console.log("Intersection workding")
        return true; 
-    }
     else
         return false;
 }
