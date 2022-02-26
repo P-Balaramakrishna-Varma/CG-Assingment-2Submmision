@@ -58,7 +58,7 @@ function EnemyDistruction(scene)
             Loaded.Enemy_Ships[j].Health -= 1
             if(Loaded.Enemy_Ships[j].Health <= 0)
             {
-              Loaded.Enemy_Ships.Alive = false
+              Loaded.Enemy_Ships[j].Alive = false
               scene.remove(Loaded.Enemy_Ships[j].Object) 
             }
             DashBoard.IncreaseHits()

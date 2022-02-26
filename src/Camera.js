@@ -18,7 +18,7 @@ function UpdateConfig(Key)
 
 function UpdateCamera(Camera, Postion, Angle)
 {
-        console.log(Postion)
+    console.log(Postion)
     if(Mode == "bird")
     {
         Camera.position.x = Postion.x - 500 * Math.sin(Angle)

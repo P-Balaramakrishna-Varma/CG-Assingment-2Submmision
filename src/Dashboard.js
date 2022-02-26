@@ -19,7 +19,7 @@ function IncreaseHits() {
 }
 
 function IncreaseTressure() {
-   No_of_Hits += 1 
+   No_of_Tressure += 1 
 }
 
 function DecreaseHealth(){

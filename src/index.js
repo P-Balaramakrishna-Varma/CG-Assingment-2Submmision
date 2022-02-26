@@ -35,8 +35,8 @@ const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
 camera.position.set( 30, 30, 100 ); //I moving camera
-const controls = new OrbitControls( camera, renderer.domElement );
-controls.update();
+//const controls = new OrbitControls( camera, renderer.domElement );
+//controls.update();
 
 DashBoard.Init()
 
@@ -86,17 +86,14 @@ var Mod = new Classes.ModelMatrix(200, 0, -200, 0, 1)
 Load.Create_Object(Mod, "Enemy")
 scene.add(Load.Enemy_Ships[0].Object)*/
 
-//Cam.UpdateCamera(camera, Load.player_ship.Object.position, Load.player_ship.Object.rotation.y)
+Cam.UpdateCamera(camera, Load.player_ship.Object.position, Load.player_ship.Object.rotation.y)
 
 var A, Key, Mod
 function animate()
 {
-	//Check if game is over 
-
-
 	requestAnimationFrame( animate );
 
-
+	if(Load.player_ship.Alive == true){
 	//Move the boat Player
 	Key = Key_board.Get_Last_KeyPress()
 	Load.player_ship.move(Key, scene)
@@ -140,13 +137,14 @@ function animate()
 	DashBoard.UpdateDashboard()	
 
 	//Camera update
-	//Cam.UpdateConfig(Key)
-	//Cam.UpdateCamera(camera, Load.player_ship.Object.position, Load.player_ship.Object.rotation.y)
+	Cam.UpdateConfig(Key)
+	Cam.UpdateCamera(camera, Load.player_ship.Object.position, Load.player_ship.Object.rotation.y)
 
 	water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
-	controls.update()
+	//controls.update()
 	make_responsive(renderer, camera);
 	renderer.render( scene, camera );
+	}
 }
 
 animate();
