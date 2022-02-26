@@ -105,18 +105,13 @@ function MakeCannon_Enemy(Enemy_ship, scene)
   ModelMat.Populate(CloneObject)
   CloneObject.scale.set(2, 2, 2)
 
-  if(Loaded.player_ship.Object.position.z < Enemy_ship.Object.position.z)
-  {
-    Con_vel.vx = - 2 * Math.sin(Enemy_ship.Object.rotation.y + Math.PI/2)
-    Con_vel.vz = - 2 * Math.cos(Enemy_ship.Object.rotation.y + Math.PI/2)
-  }
-  else
-  {
-    Con_vel.vx = - 2 * Math.sin(Enemy_ship.Object.rotation.y + Math.PI/2)
-    Con_vel.vz = - 2 * Math.cos(Enemy_ship.Object.rotation.y + Math.PI/2)
-  }
- 
+  var t = 2
+  var PlayerPos = Loaded.player_ship.Object.position
+  var EnemyPos = Enemy_ship.Object.position
+  var d = Math.sqrt((PlayerPos.x - EnemyPos.x) ** 2 + (PlayerPos.z - EnemyPos.z) ** 2)
 
+  Con_vel.vx = -(EnemyPos.x - (t * PlayerPos.x + (d-t) * EnemyPos.x) / d)
+  Con_vel.vz = -(EnemyPos.z  - (t * PlayerPos.z + (d-t) * EnemyPos.z) / d)
 
   Con_vel.Object = CloneObject
   Con_vel.Alive = true
@@ -128,7 +123,7 @@ function EnemyAttack(scene)
 {
   for(var i = 0; i < Loaded.Enemy_Ships.length; i++)
   {
-    if(Loaded.Enemy_Ships[i].Alive == true && Math.random() < 0.02)
+    if(Loaded.Enemy_Ships[i].Alive == true && Math.random() < 0.01)
     {
       MakeCannon_Enemy(Loaded.Enemy_Ships[i], scene)
     }
